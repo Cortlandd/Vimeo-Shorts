@@ -19,21 +19,14 @@
         android:layout_alignParentStart="true"
         android:text="Fetch Videos"/>
 
-    <!--<TextView-->
-        <!--android:text="Videos should go here..."-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/request_output_tv"-->
-        <!--android:layout_marginTop="21dp"-->
-        <!--android:layout_below="@+id/fetch_videos"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true" />-->
-
-    <ListView
+    <TextView
+        android:text="Videos should go here..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/request_output_tv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_marginTop="21dp"
         android:layout_below="@+id/fetch_videos"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

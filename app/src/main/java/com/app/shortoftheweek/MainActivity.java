@@ -25,7 +25,7 @@ import com.vimeo.networking.model.error.VimeoError;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity implements OnClickListener {
 
     /* Shortoftheweek Vimeo URL */
     public static final String SHORTOFTHEWEEK_VIDEO_URI = "/channels/shortoftheweek/videos";
@@ -39,37 +39,13 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        ListView listView = getListView();
-
-        // The array contains Films (from film class) objects
-        ArrayAdapter<Film> listAdapter = new ArrayAdapter<Film> (
-
-                /* this current activity. Activity class is a subclass of context */
-                this,
-
-                /* Built in layout resource. Tells the array adapter
-                to display each item in the array in a single text view */
-                android.R.layout.simple_list_item_1,
-
-                /* the array in Films */
-                Film.films);
-
-        listView.setAdapter(listAdapter);
+        setContentView(R.layout.activity_main);
 
         /* ---- View Binding ---- */
-        //mRequestOutputTv = (TextView) findViewById(R.id.request_output_tv);
-        //findViewById(R.id.fetch_videos).setOnClickListener(this);
+        mRequestOutputTv = (TextView) findViewById(R.id.request_output_tv);
+        findViewById(R.id.fetch_videos).setOnClickListener(this);
     }
 
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-
-        Intent intent = new Intent(MainActivity.this, FilmActivity.class);
-        intent.putExtra(FilmActivity.EXTRA_FILMNO, (int) id);
-        startActivity(intent);
-    }
 
 
     //@Override
