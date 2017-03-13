@@ -3,8 +3,10 @@ package com.app.shortoftheweek.activities;
 /* Android imports*/
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
@@ -12,87 +14,82 @@ import android.widget.Toast;
 
 /* Vimeo Imports */
 import com.app.shortoftheweek.R;
-import com.app.shortoftheweek.models.VideoModel;
-import com.vimeo.networking.*;
-import com.vimeo.networking.callbacks.ModelCallback;
-import com.vimeo.networking.model.Video;
-import com.vimeo.networking.model.VideoList;
-import com.vimeo.networking.model.error.VimeoError;
-
-import java.util.ArrayList;
+import com.app.shortoftheweek.ShortOfTheWeek;
+import com.app.shortoftheweek.adapter.VideoAdapter;
+import com.app.shortoftheweek.classes.VideoRecyclerView;
+import com.app.shortoftheweek.event.VideoInfoReceivedEvent;
+import com.app.shortoftheweek.task.GetViemoVideosTask;
 
 public class MainActivity extends Activity implements OnClickListener {
 
-    private VimeoClient mApiClient = VimeoClient.getInstance();
-    // private ProgressDialog mProgressDialog;
-
-    private TextView mRequestOutputTv;
-
-    ArrayList<VideoModel> myFilms = new ArrayList<>();
-//    ArrayList<Video> myTest = new ArrayList<>();
+    private VideoRecyclerView recyclerView;
+    private SwipeRefreshLayout refreshLayout;
+    private VideoAdapter videoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerView = (VideoRecyclerView)findViewById(R.id.recycler_view);
+        refreshLayout = (SwipeRefreshLayout)findViewById(R.id.video_list_refresh);
 
-        /* ---- View Binding ---- */
-        mRequestOutputTv = (TextView) findViewById(R.id.request_output_tv);
-        findViewById(R.id.fetch_videos).setOnClickListener(this);
+        Toast.makeText(this, "Loading Content..", Toast.LENGTH_SHORT).show();
     }
 
+    private void initRecyclerView() {
+        LinearLayoutManager llm = new LinearLayoutManager(getBaseContext());
+        recyclerView.setLayoutManager(llm);
+
+        GetViemoVideosTask task = new GetViemoVideosTask();
+        task.getVideoInfo();
+
+        refreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        Log.i("Main", "onRefresh called from SwipeRefreshLayout");
+
+                        // This method performs the actual data-refresh operation.
+                        // The method calls setRefreshing(false) when it's finished.
+                        GetViemoVideosTask task = new GetViemoVideosTask();
+                        task.getVideoInfo();
+                    }
+                }
+        );
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ShortOfTheWeek.getEventBus().register(this);
+
+        initRecyclerView();
+    }
+
+    @Override
+    protected void onPause() {
+        ShortOfTheWeek.getEventBus().unregister(this);
+        super.onPause();
+    }
+
+    @SuppressWarnings("unused")
+    public void onEvent(VideoInfoReceivedEvent event){
+        if(refreshLayout.isRefreshing())
+            refreshLayout.setRefreshing(false);
+
+        if(event.getVideos() != null) {
+            videoAdapter = new VideoAdapter(event.getVideos());
+            recyclerView.setAdapter(videoAdapter);
+        } else {
+            Toast.makeText(this, "Error fetching videos :(", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.fetch_videos:
-                fetchShorts();
-                break;
         }
-    }
-
-    private void updateUpdateUI(ArrayList<Video> videos) {
-        boolean addNewLine = false;
-        String videoTitlesString = "";
-        for(Video video : videos) {
-            if (addNewLine) {
-                videoTitlesString += "\n";
-            }
-            addNewLine = true;
-            videoTitlesString += video.name;
-            mRequestOutputTv.setText(videoTitlesString);
-        }
-    }
-
-    private void fetchShorts() {
-
-        mApiClient.fetchNetworkContent(SHORTOFTHEWEEK_VIDEO_URI, new ModelCallback<VideoList>(VideoList.class) {
-
-            @Override
-            public void success(VideoList videoList) {
-                if (videoList != null && videoList.data != null) {
-
-                    for (Video video : videoList.data) {
-                        VideoModel model = new VideoModel();
-                        model.setTitle(video.name);
-                        model.setLanguage(video.language);
-                        myFilms.add(model);
-                    }
-                }
-                toast("Staff Picks Success");
-            }
-
-            @Override
-            public void failure(VimeoError error) {
-                toast("Staff Picks Failure");
-                mRequestOutputTv.setText(error.getDeveloperMessage());
-            }
-        });
-
-    }
-
-    private void toast(String string) {
-        Toast.makeText(MainActivity.this, string, Toast.LENGTH_SHORT).show();
     }
 }
