@@ -1,15 +1,9 @@
-package com.app.shortoftheweek;
+package com.app.shortoftheweek.activities;
 
 /* Android imports*/
 import android.app.Activity;
-import android.app.ListActivity;
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
@@ -17,6 +11,7 @@ import android.widget.Toast;
 /* App imports */
 
 /* Vimeo Imports */
+import com.app.shortoftheweek.R;
 import com.app.shortoftheweek.models.VideoModel;
 import com.vimeo.networking.*;
 import com.vimeo.networking.callbacks.ModelCallback;
@@ -24,15 +19,9 @@ import com.vimeo.networking.model.Video;
 import com.vimeo.networking.model.VideoList;
 import com.vimeo.networking.model.error.VimeoError;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class MainActivity extends Activity implements OnClickListener {
-
-    /* Shortoftheweek Vimeo URL */
-    public static final String SHORTOFTHEWEEK_VIDEO_URI = "/channels/shortoftheweek/videos";
 
     private VimeoClient mApiClient = VimeoClient.getInstance();
     // private ProgressDialog mProgressDialog;

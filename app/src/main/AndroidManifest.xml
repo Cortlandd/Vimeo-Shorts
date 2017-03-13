@@ -11,15 +11,15 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".VimeoConfig"
+        android:name=".ShortOfTheWeek"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
+        android:theme="@style/AppTheme" >
         <!-- Splash Screen-->
         <activity
-            android:name=".SplashScreen"
+            android:name=".activities.SplashScreen"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <!-- Main activity -->
-        <activity android:name=".MainActivity" >
+        <activity android:name=".activities.MainActivity" >
         </activity>
         <!-- Film activity -->
         <activity android:name=".FilmActivity" >

@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable name="videos" type="com.app.shortoftheweek.models.VideoModel"/>
-    </data>
-    <RelativeLayout
-
+<android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/video_list_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        tools:context="com.app.shortoftheweek.MainActivity">
-        <Button
-            android:id="@+id/fetch_videos"
+        android:layout_height="match_parent">
+
+        <com.app.shortoftheweek.classes.VideoRecyclerView
+            android:id="@+id/recycler_view"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
-            android:layout_height="100px"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="Fetch Videos"/>
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"/>
 
-        <TextView
-            android:text="Videos should go here..."
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/request_output_tv"
-            android:layout_marginTop="21dp"
-            android:layout_below="@+id/fetch_videos"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-</layout>
+</android.support.v4.widget.SwipeRefreshLayout>

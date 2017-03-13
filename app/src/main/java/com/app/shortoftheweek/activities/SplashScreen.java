@@ -1,10 +1,11 @@
-package com.app.shortoftheweek;
+package com.app.shortoftheweek.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
+
+import com.app.shortoftheweek.R;
 
 /**
  * Created by cortl on 3/10/2017.
