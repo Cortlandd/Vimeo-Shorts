@@ -4,6 +4,7 @@ package com.app.shortoftheweek;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 /* App imports */
 
 /* Vimeo Imports */
+import com.app.shortoftheweek.models.VideoModel;
 import com.vimeo.networking.*;
 import com.vimeo.networking.callbacks.ModelCallback;
 import com.vimeo.networking.model.Video;
@@ -24,6 +26,8 @@ import com.vimeo.networking.model.error.VimeoError;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -35,6 +39,8 @@ public class MainActivity extends Activity implements OnClickListener {
 
     private TextView mRequestOutputTv;
 
+    ArrayList<VideoModel> myFilms = new ArrayList<>();
+//    ArrayList<Video> myTest = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +54,25 @@ public class MainActivity extends Activity implements OnClickListener {
 
 
 
-    //@Override
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fetch_videos:
                 fetchShorts();
                 break;
+        }
+    }
+
+    private void updateUpdateUI(ArrayList<Video> videos) {
+        boolean addNewLine = false;
+        String videoTitlesString = "";
+        for(Video video : videos) {
+            if (addNewLine) {
+                videoTitlesString += "\n";
+            }
+            addNewLine = true;
+            videoTitlesString += video.name;
+            mRequestOutputTv.setText(videoTitlesString);
         }
     }
 
@@ -64,16 +83,13 @@ public class MainActivity extends Activity implements OnClickListener {
             @Override
             public void success(VideoList videoList) {
                 if (videoList != null && videoList.data != null) {
-                    String videoTitlesString = "";
-                    boolean addNewLine = false;
+
                     for (Video video : videoList.data) {
-                        if (addNewLine) {
-                            videoTitlesString += "\n";
-                        }
-                        addNewLine = true;
-                        videoTitlesString += video.name;
+                        VideoModel model = new VideoModel();
+                        model.setTitle(video.name);
+                        model.setLanguage(video.language);
+                        myFilms.add(model);
                     }
-                    mRequestOutputTv.setText(videoTitlesString);
                 }
                 toast("Staff Picks Success");
             }
