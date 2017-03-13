@@ -18,7 +18,7 @@ import com.app.shortoftheweek.ShortOfTheWeek;
 import com.app.shortoftheweek.adapter.VideoAdapter;
 import com.app.shortoftheweek.classes.VideoRecyclerView;
 import com.app.shortoftheweek.event.VideoInfoReceivedEvent;
-import com.app.shortoftheweek.task.GetViemoVideosTask;
+import com.app.shortoftheweek.task.GetVimeoVideosTask;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -40,7 +40,7 @@ public class MainActivity extends Activity implements OnClickListener {
         LinearLayoutManager llm = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(llm);
 
-        GetViemoVideosTask task = new GetViemoVideosTask();
+        GetVimeoVideosTask task = new GetVimeoVideosTask();
         task.getVideoInfo();
 
         refreshLayout.setOnRefreshListener(
@@ -51,7 +51,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
                         // This method performs the actual data-refresh operation.
                         // The method calls setRefreshing(false) when it's finished.
-                        GetViemoVideosTask task = new GetViemoVideosTask();
+                        GetVimeoVideosTask task = new GetVimeoVideosTask();
                         task.getVideoInfo();
                     }
                 }

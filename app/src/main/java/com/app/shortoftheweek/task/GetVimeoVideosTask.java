@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * Created by BraxtonN on 3/13/2017.
  */
 
-public class GetViemoVideosTask {
+public class GetVimeoVideosTask {
 
     public void getVideoInfo() {
 
