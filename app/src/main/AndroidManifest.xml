@@ -29,6 +29,8 @@
         <!-- Main activity -->
         <activity android:name=".activities.MainActivity" >
         </activity>
+        <activity android:name=".activities.FilmActivity" >
+        </activity>
     </application>
 
 </manifest>

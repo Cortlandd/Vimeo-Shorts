@@ -1,5 +1,8 @@
 package com.app.shortoftheweek.adapter;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -9,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.shortoftheweek.R;
+import com.app.shortoftheweek.activities.FilmActivity;
 import com.bumptech.glide.Glide;
 import com.vimeo.networking.model.Video;
 
@@ -36,6 +40,15 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             mVideoThumbnail = (ImageView) itemView.findViewById(R.id.video_thumbnail);
             mVideoTitle = (TextView)itemView.findViewById(R.id.video_title);
             mVideoDescription = (TextView)itemView.findViewById(R.id.video_description);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(v.getContext(), FilmActivity.class);
+                    i.putExtra("TitleKey", String.valueOf(mVideoTitle));
+                    v.getContext().startActivity(i);
+                }
+            });
         }
     }
 
