@@ -14,7 +14,10 @@ import android.widget.TextView;
 import com.app.shortoftheweek.R;
 import com.app.shortoftheweek.activities.FilmActivity;
 import com.bumptech.glide.Glide;
+import com.vimeo.networking.VimeoClient;
 import com.vimeo.networking.model.Video;
+import com.vimeo.networking.model.VideoFile;
+import com.vimeo.networking.model.playback.Play;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,15 +43,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             mVideoThumbnail = (ImageView) itemView.findViewById(R.id.video_thumbnail);
             mVideoTitle = (TextView)itemView.findViewById(R.id.video_title);
             mVideoDescription = (TextView)itemView.findViewById(R.id.video_description);
-
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(v.getContext(), FilmActivity.class);
-                    i.putExtra("TitleKey", String.valueOf(mVideoTitle));
-                    v.getContext().startActivity(i);
-                }
-            });
         }
     }
 
@@ -70,7 +64,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
 
         /**
          * Be sure to check if the current video contains images and pick the correct size
@@ -85,6 +79,21 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
         holder.mVideoTitle.setText(mVideos.get(position).name);
         holder.mVideoDescription.setText(mVideos.get(position).description);
+
+        holder.mVideoThumbnail.setOnClickListener(new View.OnClickListener() {
+            Video vid = mVideos.get(position);
+            String html = vid.embed != null ? vid.embed.html : null;
+
+
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(view.getContext(), FilmActivity.class);
+                i.putExtra("TitleKey", mVideos.get(position).name);
+                i.putExtra("DescriptionKey", mVideos.get(position).description);
+                i.putExtra("VideoKey", html);
+                view.getContext().startActivity(i);
+            }
+        });
 
     }
 
