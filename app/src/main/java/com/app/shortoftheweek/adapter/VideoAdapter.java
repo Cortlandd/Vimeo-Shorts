@@ -22,6 +22,8 @@ import com.vimeo.networking.model.playback.Play;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.breedrapps.vimeoextractor.VimeoExtractor;
+
 /**
  * Created by BraxtonN on 3/13/2017.
  */
@@ -84,13 +86,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             Video vid = mVideos.get(position);
             String html = vid.embed != null ? vid.embed.html : null;
 
-
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), FilmActivity.class);
                 i.putExtra("TitleKey", mVideos.get(position).name);
                 i.putExtra("DescriptionKey", mVideos.get(position).description);
-                i.putExtra("VideoKey", html);
+                i.putExtra("VidKey", mVideos.get(position).uri);
+                i.putExtra("LinkKey", html);
                 view.getContext().startActivity(i);
             }
         });
