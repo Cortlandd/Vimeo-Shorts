@@ -22,15 +22,20 @@ import com.app.shortoftheweek.task.GetVimeoVideosTask;
 
 public class MainActivity extends Activity implements OnClickListener {
 
+    // Settings for Videos view inside MainActivity
     private VideoRecyclerView recyclerView;
+    // Variable to enable refreshing videos
     private SwipeRefreshLayout refreshLayout;
+    // Look and feel for Videos inside MainActivity
     private VideoAdapter videoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Assign view for recycler view
         recyclerView = (VideoRecyclerView)findViewById(R.id.recycler_view);
+        // TODO: Create comment here
         refreshLayout = (SwipeRefreshLayout)findViewById(R.id.video_list_refresh);
 
         Toast.makeText(this, "Loading Content..", Toast.LENGTH_SHORT).show();
@@ -40,7 +45,9 @@ public class MainActivity extends Activity implements OnClickListener {
         LinearLayoutManager llm = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(llm);
 
+        // Variable declaration of the Vimeo API Request
         GetVimeoVideosTask task = new GetVimeoVideosTask();
+        // Request to Vimeo API to fetch videos
         task.getVideoInfo();
 
         refreshLayout.setOnRefreshListener(

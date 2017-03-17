@@ -7,13 +7,10 @@ import android.os.Handler;
 
 import com.app.shortoftheweek.R;
 
-/**
- * Created by cortl on 3/10/2017.
- */
 
 public class SplashScreen extends Activity {
 
-    /* Amount of time the splash screen is active. */
+    // Amount of time the splash screen is active (3 seconds)
     private static int SPLASH_TIME_OUT = 3000;
 
     @Override
@@ -21,6 +18,7 @@ public class SplashScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_splash);
 
+        // Setup handler to goto MainActivity after splash screen is finished
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

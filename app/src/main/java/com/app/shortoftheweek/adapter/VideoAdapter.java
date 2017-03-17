@@ -1,11 +1,8 @@
 package com.app.shortoftheweek.adapter;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,36 +11,36 @@ import android.widget.TextView;
 import com.app.shortoftheweek.R;
 import com.app.shortoftheweek.activities.FilmActivity;
 import com.bumptech.glide.Glide;
-import com.vimeo.networking.VimeoClient;
 import com.vimeo.networking.model.Video;
-import com.vimeo.networking.model.VideoFile;
-import com.vimeo.networking.model.playback.Play;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import uk.breedrapps.vimeoextractor.VimeoExtractor;
-
-/**
- * Created by BraxtonN on 3/13/2017.
- */
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
-
+    // An array representing the Vimeo.Video object
     private ArrayList<Video> mVideos;
 
+    // A ViewHolder describes an item view. In this case, the fetched media from Vimeo request
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        // ImageView for Video thumbnails
         public ImageView mVideoThumbnail;
+        // TextView for Video titles
         public TextView mVideoTitle;
+        // TextView for Video descriptions
         public TextView mVideoDescription;
+        // View representing the View
         public View mView;
 
+        // ViewHolder constructor
         public ViewHolder(View view) {
             super(view);
 
             mView = view;
+            // Assign Video thumbnail to ImageView on MainActivity
             mVideoThumbnail = (ImageView) itemView.findViewById(R.id.video_thumbnail);
+            // Assign Video title to TextView on MainActivity
             mVideoTitle = (TextView)itemView.findViewById(R.id.video_title);
+            // Assign Video description to TextView on MainActivity
             mVideoDescription = (TextView)itemView.findViewById(R.id.video_description);
         }
     }
@@ -58,8 +55,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     }
 
     @Override
-    public VideoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public VideoAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_layout, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;

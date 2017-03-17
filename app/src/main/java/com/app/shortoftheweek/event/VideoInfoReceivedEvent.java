@@ -4,17 +4,17 @@ import com.vimeo.networking.model.Video;
 
 import java.util.ArrayList;
 
-/**
- * Created by BraxtonN on 3/13/2017.
- */
 
 public class VideoInfoReceivedEvent {
+    // Declaration of an array representing Vimeo videos
     private final ArrayList<Video> videos;
 
+    // TODO: Create comment here
     public VideoInfoReceivedEvent(ArrayList<Video> videos) {
         this.videos = videos;
     }
 
+    // TODO: Create comment here
     public ArrayList<Video> getVideos() {
         return videos;
     }
