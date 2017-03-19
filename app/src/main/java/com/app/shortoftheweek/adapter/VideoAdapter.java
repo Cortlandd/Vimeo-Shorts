@@ -13,6 +13,10 @@ import com.app.shortoftheweek.activities.FilmActivity;
 import com.bumptech.glide.Glide;
 import com.vimeo.networking.model.Video;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
 import java.util.ArrayList;
 
 
@@ -82,13 +86,16 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             Video vid = mVideos.get(position);
             String html = vid.embed != null ? vid.embed.html : null;
 
+            Document doc = Jsoup.parse(html);
+            Element iframe = doc.select("iframe").first();
+            String iframeSrc = iframe.attr("src");
+
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(), FilmActivity.class);
                 i.putExtra("TitleKey", mVideos.get(position).name);
                 i.putExtra("DescriptionKey", mVideos.get(position).description);
-                i.putExtra("VidKey", mVideos.get(position).uri);
-                i.putExtra("LinkKey", html);
+                i.putExtra("LinkKey", iframeSrc);
                 view.getContext().startActivity(i);
             }
         });

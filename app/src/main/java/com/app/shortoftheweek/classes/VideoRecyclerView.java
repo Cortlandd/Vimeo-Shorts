@@ -39,7 +39,7 @@ public class VideoRecyclerView extends RecyclerView {
 
         // TODO: Create comment here
         for (int i = 0; i < getChildCount(); i++) {
-            animate(getChildAt(i), i);
+            //animate(getChildAt(i), i);
 
             if (i == getChildCount() - 1) {
                 getHandler().postDelayed(new Runnable() {
@@ -52,11 +52,12 @@ public class VideoRecyclerView extends RecyclerView {
         }
     }
 
+    // @Removed
     // Animation when fetching videos in MainActivity
-    private void animate(View view, final int pos) {
-        view.animate().cancel();
-        view.setTranslationY(100);
-        view.setAlpha(0);
-        view.animate().alpha(1.0f).translationY(0).setDuration(300).setStartDelay(pos * 100);
-    }
+//    private void animate(View view, final int pos) {
+//        view.animate().cancel();
+//        view.setTranslationY(100);
+//        view.setAlpha(0);
+//        view.animate().alpha(1.0f).translationY(0).setDuration(300).setStartDelay(pos * 100);
+//    }
 }

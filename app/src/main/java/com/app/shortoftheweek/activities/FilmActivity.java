@@ -2,6 +2,7 @@ package com.app.shortoftheweek.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,19 +11,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Display;
 import android.view.WindowManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.app.shortoftheweek.R;
 
-import uk.breedrapps.vimeoextractor.OnVimeoExtractionListener;
-import uk.breedrapps.vimeoextractor.VimeoExtractor;
-import uk.breedrapps.vimeoextractor.VimeoVideo;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
-/**
- * Created by cortland on 3/13/2017.
- */
 
 public class FilmActivity extends Activity {
     TextView title;
@@ -46,13 +46,23 @@ public class FilmActivity extends Activity {
 
         videoView.setInitialScale(1);
         videoView.getSettings().setJavaScriptEnabled(true);
+        videoView.getSettings().setUserAgentString("desktop");
         videoView.getSettings().setLoadWithOverviewMode(true);
         videoView.getSettings().setUseWideViewPort(true);
         videoView.setScrollbarFadingEnabled(false);
-        videoView.loadData(videoResult, "text/html", "utf-8");
+        videoView.loadUrl(videoResult);
 
         description.setMovementMethod(new ScrollingMovementMethod());
         description.setText(descriptionResult);
+
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        // TODO: Create better implementation of stopping video audio.
+        // A hack to stop video audio from playing when
+        // back button is pressed.
+        videoView.destroy();
+    }
 }
