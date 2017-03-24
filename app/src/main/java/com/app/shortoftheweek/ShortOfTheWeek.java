@@ -15,7 +15,7 @@ public class ShortOfTheWeek extends Application {
     // Variable to make Vimeo API Requests
     private static VimeoClient mApiClient;
     // Shortoftheweek Channel endpoint
-    public static final String SHORTOFTHEWEEK_VIDEO_URI = "/groups/1615/videos?sort=date";
+    public static final String SHORTFILMS_VIDEO_URI = "/groups/1615/videos?sort=date";
     private static EventBus eBus;
 
     // Method to return Variable used to make Vimeo API Requests
