@@ -1,4 +1,4 @@
-package com.app.shortoftheweek.activities;
+package com.app.vimeoshorts.activities;
 
 /* Android imports*/
 import android.app.Activity;
@@ -13,12 +13,12 @@ import android.widget.Toast;
 /* App imports */
 
 /* Vimeo Imports */
-import com.app.shortoftheweek.R;
-import com.app.shortoftheweek.ShortOfTheWeek;
-import com.app.shortoftheweek.adapter.VideoAdapter;
-import com.app.shortoftheweek.classes.VideoRecyclerView;
-import com.app.shortoftheweek.event.VideoInfoReceivedEvent;
-import com.app.shortoftheweek.task.GetVimeoVideosTask;
+import com.app.vimeoshorts.R;
+import com.app.vimeoshorts.VimeoShorts;
+import com.app.vimeoshorts.adapter.VideoAdapter;
+import com.app.vimeoshorts.classes.VideoRecyclerView;
+import com.app.vimeoshorts.event.VideoInfoReceivedEvent;
+import com.app.vimeoshorts.task.GetVimeoVideosTask;
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -69,14 +69,14 @@ public class MainActivity extends Activity implements OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-        ShortOfTheWeek.getEventBus().register(this);
+        VimeoShorts.getEventBus().register(this);
 
         initRecyclerView();
     }
 
     @Override
     protected void onPause() {
-        ShortOfTheWeek.getEventBus().unregister(this);
+        VimeoShorts.getEventBus().unregister(this);
         super.onPause();
     }
 

@@ -1,4 +1,4 @@
-package com.app.shortoftheweek.adapter;
+package com.app.vimeoshorts.adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.app.shortoftheweek.R;
-import com.app.shortoftheweek.activities.FilmActivity;
+import com.app.vimeoshorts.R;
+import com.app.vimeoshorts.activities.FilmActivity;
 import com.bumptech.glide.Glide;
 import com.vimeo.networking.model.Video;
 

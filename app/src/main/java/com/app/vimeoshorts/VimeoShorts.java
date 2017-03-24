@@ -1,4 +1,4 @@
-package com.app.shortoftheweek;
+package com.app.vimeoshorts;
 
 import android.app.Application;
 
@@ -10,12 +10,11 @@ import com.vimeo.networking.VimeoClient;
 
 import de.greenrobot.event.EventBus;
 
-
-public class ShortOfTheWeek extends Application {
+public class VimeoShorts extends Application {
     // Variable to make Vimeo API Requests
     private static VimeoClient mApiClient;
     // Shortoftheweek Channel endpoint
-    public static final String SHORTOFTHEWEEK_VIDEO_URI = "/channels/shortoftheweek/videos";
+    public static final String SHORTFILMS_VIDEO_URI = "/groups/1615/videos?sort=date";
     private static EventBus eBus;
 
     // Method to return Variable used to make Vimeo API Requests

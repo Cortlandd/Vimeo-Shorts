@@ -1,4 +1,4 @@
-package com.app.shortoftheweek;
+package com.app.vimeoshorts;
 
 import org.junit.Test;
 

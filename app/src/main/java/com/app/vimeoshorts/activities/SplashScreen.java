@@ -1,11 +1,11 @@
-package com.app.shortoftheweek.activities;
+package com.app.vimeoshorts.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.app.shortoftheweek.R;
+import com.app.vimeoshorts.R;
 
 
 public class SplashScreen extends Activity {

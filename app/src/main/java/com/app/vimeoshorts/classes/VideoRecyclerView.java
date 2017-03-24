@@ -1,10 +1,9 @@
-package com.app.shortoftheweek.classes;
+package com.app.vimeoshorts.classes;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 
 
 public class VideoRecyclerView extends RecyclerView {

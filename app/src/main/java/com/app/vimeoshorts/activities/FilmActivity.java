@@ -1,27 +1,12 @@
-package com.app.shortoftheweek.activities;
+package com.app.vimeoshorts.activities;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
-import android.view.Display;
-import android.view.WindowManager;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
-import android.widget.VideoView;
 
-import com.app.shortoftheweek.R;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
+import com.app.vimeoshorts.R;
 
 
 public class FilmActivity extends Activity {
