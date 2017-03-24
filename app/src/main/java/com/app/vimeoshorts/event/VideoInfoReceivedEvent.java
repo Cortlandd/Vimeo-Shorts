@@ -1,4 +1,4 @@
-package com.app.shortoftheweek.event;
+package com.app.vimeoshorts.event;
 
 import com.vimeo.networking.model.Video;
 

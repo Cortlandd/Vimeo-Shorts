@@ -1,4 +1,4 @@
-package com.app.shortoftheweek;
+package com.app.vimeoshorts;
 
 import android.app.Application;
 
@@ -10,8 +10,7 @@ import com.vimeo.networking.VimeoClient;
 
 import de.greenrobot.event.EventBus;
 
-
-public class ShortOfTheWeek extends Application {
+public class VimeoShorts extends Application {
     // Variable to make Vimeo API Requests
     private static VimeoClient mApiClient;
     // Shortoftheweek Channel endpoint
