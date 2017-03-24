@@ -32,6 +32,10 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         public TextView mVideoTitle;
         // TextView for Video descriptions
         public TextView mVideoDescription;
+        // TextView for Video authors
+        public TextView mVideoAuthor;
+        // TextView for Video durations
+        public TextView mVideoDuration;
         // View representing the View
         public View mView;
 
@@ -46,6 +50,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             mVideoTitle = (TextView)itemView.findViewById(R.id.video_title);
             // Assign Video description to TextView on MainActivity
             mVideoDescription = (TextView)itemView.findViewById(R.id.video_description);
+            // Assign Video author to TextView on MainActivity
+            mVideoAuthor = (TextView)itemView.findViewById(R.id.video_author);
+            // Assign Video duration to TextView on MainActivity
+            mVideoDuration = (TextView)itemView.findViewById(R.id.video_duration);
+
         }
     }
 
@@ -76,11 +85,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
          */
         Glide.with(holder.mView.getContext())
                 .load(mVideos.get(position).pictures.sizes.get(4).link)
-                .error(R.drawable.shortoftheweek_logo)
+                .error(R.drawable.feature_banner)
                 .into(holder.mVideoThumbnail);
 
         holder.mVideoTitle.setText(mVideos.get(position).name);
         holder.mVideoDescription.setText(mVideos.get(position).description);
+        holder.mVideoAuthor.setText(mVideos.get(position).user.name);
+        // See correctDurationFormat()
+        holder.mVideoDuration.setText(correctDurationFormat(mVideos.get(position).duration));
 
         holder.mVideoThumbnail.setOnClickListener(new View.OnClickListener() {
             Video vid = mVideos.get(position);
@@ -106,4 +118,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
+
+    // Used to convert duration string to actual time.
+    public String correctDurationFormat(int mDuration){
+        final int second = mDuration % 60;
+        final int minute = mDuration / 60;
+        if(second > 9) return minute+":"+second;
+        else return minute+":0"+second;
+    }
+
 }
