@@ -4,8 +4,8 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
-        applicationId "com.app.shortoftheweek"
-        minSdkVersion 19
+        applicationId "com.app.vimeoshorts"
+        minSdkVersion 14
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -28,7 +28,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:21.0.+'
     compile 'com.android.support:recyclerview-v7:21.0.+'
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.github.ed-george:AndroidVimeoExtractor:1.1.1'
     compile 'com.github.bumptech.glide:glide:3.5.2'
     compile 'com.android.support:support-v4:22.0.0'
     compile 'org.jsoup:jsoup:1.10.2'
