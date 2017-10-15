@@ -29,17 +29,25 @@
             android:id="@+id/videoTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
+            android:fontFamily="monospace"
             android:text="Title Text"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
             android:textAlignment="center"
             android:textColor="#000"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/videoDescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="sans-serif-smallcaps"
             android:layout_below="@+id/videoTitle"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
             android:scrollbars="vertical"
             android:text="Description Text"
             android:textColor="#000"
